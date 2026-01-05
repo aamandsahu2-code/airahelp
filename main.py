@@ -11,6 +11,19 @@ from pyrogram.errors import FloodWait, RPCError
 from config import API_ID, API_HASH, BOT_TOKEN
 from handlers import register_all_handlers
 from db import db, init_db
+# Top में add करो
+from db import init_db, db
+import asyncio
+
+# main() में:
+async def main():
+    await init_db()  # Mongo connect
+    register_handlers(app)
+    print("Aira starting...")
+    app.run()
+
+if __name__ == "__main__":
+    asyncio.run(main())
 
 # Logging setup
 logging.basicConfig(
