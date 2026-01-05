@@ -7,6 +7,19 @@
 # License: Open-source (keep credits, no resale)
 # ============================================================
 
+# Top में add करो
+from db import init_db, db
+import asyncio
+
+# main() में:
+async def main():
+    await init_db()  # Mongo connect
+    register_handlers(app)
+    print("Aira starting...")
+    app.run()
+
+if __name__ == "__main__":
+    asyncio.run(main())
 
 from pyrogram import Client, filters
 from pyrogram.types import (
