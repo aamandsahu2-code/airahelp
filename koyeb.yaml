@@ -1,0 +1,25 @@
+build:
+  builder: nixpacks
+  env:
+    - NIXPACKS_PYTHON_VERSION=3.11  # Pyrogram के लिए stable Python
+
+run:
+  command: 
+    - bash
+    - -c
+    - |
+      pip install -r requirements.txt &&
+      python3 start.py  # या main.py / handlers.py
+
+# Health check के लिए dummy web server (port 8080 mandatory)
+web:
+  port: 8080
+  command:
+    - bash
+    - -c
+    - |
+      python3 -m http.server 8080 &  # Background web server
+      python3 start.py  # Bot foreground में चले
+
+# Environment variables Koyeb dashboard से add करो:
+# API_ID, API_HASH, BOT_TOKEN, OWNER_ID, START_IMAGE URL
